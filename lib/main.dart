@@ -16,6 +16,7 @@ import 'package:selfprivacy/config/bloc_observer.dart';
 import 'package:selfprivacy/config/get_it_config.dart';
 import 'package:selfprivacy/config/localization.dart';
 import 'package:selfprivacy/logic/cubit/app_settings/app_settings_cubit.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,9 +24,8 @@ void main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   try {
-    /// Wakelock support for Linux
-    /// desktop is not yet implemented
     await Wakelock.enable();
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
   } on PlatformException catch (e) {
     print(e);
   }
