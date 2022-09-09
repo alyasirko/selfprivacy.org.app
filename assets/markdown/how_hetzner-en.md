@@ -17,7 +17,6 @@
 7.  Under the **Description** field we can see a possibility to choose
     **permissions**. Pick **Read & Write**.
 8.  Click **Generate API Token.**
-9.  After that, our key will be shown. Store it in the reliable place,
-    or in the password manager, which is better.
+9.  After that, our key will be shown, just copy it. 
 
 ![Hetzner token setup](resource:assets/images/gifs/Hetzner.gif)
