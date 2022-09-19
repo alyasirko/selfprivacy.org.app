@@ -10,18 +10,34 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
-      - run: flutter build windows -v
+      - run: flutter build windows
+      - uses: actions/upload-artifact@v3
+          name: windows
+          path: build/windows/runner/Release
 
   macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
-      - run: flutter build macos -v
+      - run: flutter build macos
+      - uses: actions/upload-artifact@v3
+          name: macos
+          path: build/macos/Build/Products/Release
 
-  ios:
-    runs-on: macos-latest
+#  ios:
+#    runs-on: macos-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: subosito/flutter-action@v2
+#      - run: flutter build ipa
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - windows
+      - macos
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-      - run: flutter build ipa -v
+      - uses: actions/download-artifact@v3
+      - run: ls -la
+      - run: ls -la windows/* macos/*
