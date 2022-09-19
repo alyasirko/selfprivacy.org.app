@@ -25,9 +25,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: macos
-          path: |
-                build/macos/Build/Products/Release/selfprivacy.app
-                !build/macos/Build/Products/Release/*
+          path: build/macos/Build/Products/Release/selfprivacy.app
 
 #  ios:
 #    runs-on: macos-latest
