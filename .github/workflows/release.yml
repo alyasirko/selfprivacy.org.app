@@ -25,7 +25,9 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: macos
-          path: build/macos/Build/Products/Release
+          path: |
+                build/macos/Build/Products/Release/selfprivacy.app
+                !build/macos/Build/Products/Release/*
 
 #  ios:
 #    runs-on: macos-latest
@@ -41,5 +43,6 @@ jobs:
       - macos
     steps:
       - uses: actions/download-artifact@v3
-      - run: ls -la
-      - run: ls -la windows/* macos/*
+      - run: ls -la windows/ macos/
+      - run: pushd windows; zip -r ../selfprivacy-windows.zip .; popd
+      - run: pushd macos; zip -r ../selfprivacy-macos.zip .; popd
